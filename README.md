@@ -21,6 +21,10 @@ Pojdite na OpenCart administracijo:
 Če račun preko plugina izdajate prvič preverite kako se je prenesel v Čebelco in ga šele potem tam Izdajte. Še posebej če imate aktivirano davčno potrjevanje.
 Predvsem bodite pozorni na davke in poštnino.
 
+### Izjava
+
+Moduli so na voljo kot so. Za namestitev na svoj strežnik morate poskrbeti sami, če najdete kakšne težave v dodatkih nas prosim obvestite o njih, še bolje pa če jih odpravite in nam pošljete spremembe preko Github sistema.
+
 ## English
 
 This plugin works on newest OpenCart 3.0.3.7. It doesn't require vqMod, but uses ocMod, which is already included in opencart 3.x.
