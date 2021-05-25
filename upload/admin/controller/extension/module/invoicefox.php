@@ -231,23 +231,23 @@ class ControllerExtensionModuleInvoicefox extends Controller {
 		}elseif($this->config->get('invoicefox_document_to_make')){ 
 			$data['invoicefox_document_to_make'] = $this->config->get('invoicefox_document_to_make');
 		} else { 
-			$data['invoicefox_document_to_make'] = 'inventory';
+			$data['invoicefox_document_to_make'] = 'invoice';
 		}
 
 		if (isset($this->request->post['invoicefox_proforma_days_valid'])) {
 			$data['invoicefox_proforma_days_valid'] = $this->request->post['invoicefox_proforma_days_valid'];
-		}elseif($this->config->get('invoicefox_proforma_days_valid')!==''){ 
+		}elseif($this->config->get('invoicefox_proforma_days_valid')){ 
 			$data['invoicefox_proforma_days_valid'] = $this->config->get('invoicefox_proforma_days_valid');
 		} else { 
-			$data['invoicefox_proforma_days_valid'] = '10';
+			$data['invoicefox_proforma_days_valid'] = '14';
 		}
 
 		if (isset($this->request->post['invoicefox_customer_general_payment_period'])) {
 			$data['invoicefox_customer_general_payment_period'] = $this->request->post['invoicefox_customer_general_payment_period'];
-		}elseif($this->config->get('invoicefox_customer_general_payment_period')!==''){ 
+		}elseif($this->config->get('invoicefox_customer_general_payment_period')){ 
 			$data['invoicefox_customer_general_payment_period'] = $this->config->get('invoicefox_customer_general_payment_period');
 		} else { 
-			$data['invoicefox_customer_general_payment_period'] = '5';
+			$data['invoicefox_customer_general_payment_period'] = '7';
 		}
 		
 		/*
@@ -262,10 +262,10 @@ class ControllerExtensionModuleInvoicefox extends Controller {
 
 		if (isset($this->request->post['invoicefox_display_product_option_label'])) {
 			$data['invoicefox_display_product_option_label'] = $this->request->post['invoicefox_display_product_option_label'];
-		}elseif(!$this->config->get('invoicefox_display_product_option_label')!==''){ 
+		}elseif(!$this->config->get('invoicefox_display_product_option_label')){ 
 			$data['invoicefox_display_product_option_label'] = $this->config->get('invoicefox_display_product_option_label');
 		} else { 
-			$data['invoicefox_display_product_option_label'] = '0';
+			$data['invoicefox_display_product_option_label'] = '1';
 		}
 
 
@@ -274,12 +274,12 @@ class ControllerExtensionModuleInvoicefox extends Controller {
 		}elseif($this->config->get('invoicefox_partial_sum_label')){ 
 			$data['invoicefox_partial_sum_label'] = $this->config->get('invoicefox_partial_sum_label');
 		} else { 
-			$data['invoicefox_partial_sum_label'] = 'Skupaj';
+			$data['invoicefox_partial_sum_label'] = 'Skupaj:';
 		}
 
 		if (isset($this->request->post['invoicefox_round_calculated_taxrate_to'])) {
 			$data['invoicefox_round_calculated_taxrate_to'] = $this->request->post['invoicefox_round_calculated_taxrate_to'];
-		}elseif($this->config->get('invoicefox_round_calculated_taxrate_to')!==''){ 
+		}elseif($this->config->get('invoicefox_round_calculated_taxrate_to')){ 
 			$data['invoicefox_round_calculated_taxrate_to'] = $this->config->get('invoicefox_round_calculated_taxrate_to');
 		} else { 
 			$data['invoicefox_round_calculated_taxrate_to'] = '1';
@@ -287,35 +287,35 @@ class ControllerExtensionModuleInvoicefox extends Controller {
 
 		if (isset($this->request->post['invoicefox_round_calculated_netprice_to'])) {
 			$data['invoicefox_round_calculated_netprice_to'] = $this->request->post['invoicefox_round_calculated_netprice_to'];
-		}elseif($this->config->get('invoicefox_round_calculated_netprice_to')!==''){ 
+		}elseif($this->config->get('invoicefox_round_calculated_netprice_to')){ 
 			$data['invoicefox_round_calculated_netprice_to'] = $this->config->get('invoicefox_round_calculated_netprice_to');
 		} else { 
-			$data['invoicefox_round_calculated_netprice_to'] = '3';
+			$data['invoicefox_round_calculated_netprice_to'] = '4';
 		}
 
 		if (isset($this->request->post['invoicefox_from_warehouse_id'])) {
 			$data['invoicefox_from_warehouse_id'] = $this->request->post['invoicefox_from_warehouse_id'];
-		}elseif($this->config->get('invoicefox_from_warehouse_id')!==''){ 
+		}elseif($this->config->get('invoicefox_from_warehouse_id')){ 
 			$data['invoicefox_from_warehouse_id'] = $this->config->get('invoicefox_from_warehouse_id');
 		} else { 
-			$data['invoicefox_from_warehouse_id'] = '3';
+			$data['invoicefox_from_warehouse_id'] = '0';
 		}
 
 
 		if (isset($this->request->post['invoicefox_tax_rate_on_shipping'])) {
 			$data['invoicefox_tax_rate_on_shipping'] = $this->request->post['invoicefox_tax_rate_on_shipping'];
-		}elseif($this->config->get('invoicefox_tax_rate_on_shipping')!==''){ 
+		}elseif($this->config->get('invoicefox_tax_rate_on_shipping')){ 
 			$data['invoicefox_tax_rate_on_shipping'] = $this->config->get('invoicefox_tax_rate_on_shipping');
 		} else { 
-			$data['invoicefox_tax_rate_on_shipping'] = '17.5';
+			$data['invoicefox_tax_rate_on_shipping'] = '22';
 		}
 
 		if (isset($this->request->post['invoicefox_use_shop_document_numbers'])) {
 			$data['invoicefox_use_shop_document_numbers'] = $this->request->post['invoicefox_use_shop_document_numbers'];
-		}elseif($this->config->get('use_shop_document_numbers')!==''){ 
+		}elseif($this->config->get('use_shop_document_numbers')){ 
 			$data['invoicefox_use_shop_document_numbers'] = $this->config->get('invoicefox_use_shop_document_numbers');
 		} else { 
-			$data['invoicefox_use_shop_document_numbers'] = '0';
+			$data['invoicefox_use_shop_document_numbers'] = 'false';
 		}
 
 		if (isset($this->request->post['invoicefox_create_invfox_document_on_status'])) {
@@ -336,7 +336,7 @@ class ControllerExtensionModuleInvoicefox extends Controller {
 
 		if (isset($this->request->post['invoicefox_tax_id'])) {
 			$data['invoicefox_tax_id'] = $this->request->post['invoicefox_tax_id'];
-		}elseif($this->config->get('invoicefox_tax_id')!==''){ 
+		}elseif($this->config->get('invoicefox_tax_id')){ 
 			$data['invoicefox_tax_id'] = $this->config->get('invoicefox_tax_id');
 		} else { 
 			$data['invoicefox_tax_id'] = '';
@@ -344,7 +344,7 @@ class ControllerExtensionModuleInvoicefox extends Controller {
 
 		if (isset($this->request->post['invoicefox_tax_name'])) {
 			$data['invoicefox_tax_name'] = $this->request->post['invoicefox_tax_name'];
-		}elseif($this->config->get('invoicefox_tax_name')!==''){ 
+		}elseif($this->config->get('invoicefox_tax_name')){ 
 			$data['invoicefox_tax_name'] = $this->config->get('invoicefox_tax_name');
 		} else { 
 			$data['invoicefox_tax_name'] = '';
@@ -352,23 +352,15 @@ class ControllerExtensionModuleInvoicefox extends Controller {
 
 		if (isset($this->request->post['invoicefox_tax_location'])) {
 			$data['invoicefox_tax_location'] = $this->request->post['invoicefox_tax_location'];
-		}elseif($this->config->get('invoicefox_tax_location')!==''){ 
+		}elseif($this->config->get('invoicefox_tax_location')){ 
 			$data['invoicefox_tax_location'] = $this->config->get('invoicefox_tax_location');
 		} else { 
 			$data['invoicefox_tax_location'] = '';
 		}
 
-		if (isset($this->request->post['invoicefox_tax_register'])) {
-			$data['invoicefox_tax_register'] = $this->request->post['invoicefox_tax_register'];
-		}elseif($this->config->get('invoicefox_tax_register')!==''){ 
-			$data['invoicefox_tax_register'] = $this->config->get('invoicefox_tax_register');
-		} else { 
-			$data['invoicefox_tax_register'] = '1';
-		}
-
 		if (isset($this->request->post['invoicefox_fiscalize'])) {
 			$data['invoicefox_fiscalize'] = $this->request->post['invoicefox_fiscalize'];
-		}elseif($this->config->get('invoicefox_fiscalize')!==''){ 
+		}elseif($this->config->get('invoicefox_fiscalize')){ 
 			$data['invoicefox_fiscalize'] = $this->config->get('invoicefox_fiscalize');
 		} else { 
 			$data['invoicefox_fiscalize'] = '0';
@@ -492,14 +484,17 @@ class ControllerExtensionModuleInvoicefox extends Controller {
 		}
 
 		
-
+		/* optional 
 		if (!$this->request->post['invoicefox_partial_sum_label']) {
 			$this->error['partial_sum_label'] = $this->language->get('error_partial_sum_label');
 		}
+		*/
 
 		if (!$this->request->post['invoicefox_create_invfox_document_on_status']) {
 			$this->error['create_invfox_document_on_status'] = $this->language->get('error_create_invfox_document_on_status');
 		}
+
+		/* optional 
 
 		if ($this->request->post['invoicefox_tax_id']==='') {
 			$this->error['tax_id'] = $this->language->get('error_tax_id');
@@ -513,9 +508,8 @@ class ControllerExtensionModuleInvoicefox extends Controller {
 			$this->error['tax_location'] = $this->language->get('error_tax_location');
 		}
 
-		if ($this->request->post['invoicefox_tax_register']==='') {
-			$this->error['tax_register'] = $this->language->get('error_tax_register');
-		}
+		*/
+
 		
 		if (!$this->error) {
 			return true;

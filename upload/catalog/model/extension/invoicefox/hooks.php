@@ -97,7 +97,7 @@ class ModelExtensionInvoiceFoxHooks extends Model {
       $api = new InvfoxAPI($this->CONF['API_KEY'], $this->CONF['API_DOMAIN'], true);
       $api->setDebugHook("opencart_invfox__trace");
 	  
-	  $this->load->model('sale/order');
+	  $this->load->model('extension/invoicefox/order');
 	  $order = $this->model_extension_invoicefox_order->getOrder($order_id);
 	  // $invoice_no = $this->CONF['use_shop_document_numbers'] ? $order['invoice_prefix'] . $order['order_id'] : '-';
       // $invoice_no = $order['invoice_prefix'] . $order['order_id'] ;
@@ -152,9 +152,9 @@ class ModelExtensionInvoiceFoxHooks extends Model {
             if (isset($result['eor'])) {
                 $result['eor']=$r[0]['eor'];
 			}
-			$this->load->model('sale/order');
-			$this->model_sale_order->updateInvoiceFinalized($order_id); 
-			$this->model_sale_order->updateInvoiceDocNum($order_id,$r[0]['docnum']); 
+			$this->load->model('extension/invoicefox/order');
+			$this->model_extension_invoicefox_order->updateInvoiceFinalized($order_id); 
+			$this->model_extension_invoicefox_order->updateInvoiceDocNum($order_id,$r[0]['docnum']); 
 			
 		}
 		else{
@@ -238,7 +238,7 @@ class ModelExtensionInvoiceFoxHooks extends Model {
 	  $productMore = $this->model_catalog_product->getProduct($product['product_id']);
 	  $product_options_text='';
 	  if($this->CONF['display_product_option_label']){
-		$product_options = $this->model_sale_order->getOrderOptions($order_id, $product['order_product_id']);
+		$product_options = $this->model_extension_invoicefox_order->getOrderOptions($order_id, $product['order_product_id']);
 		if($product_options)
 			foreach($product_options as $product_option){
 				$product_options_text .= $product_option['name']. ':'.$product_option['value']."\n";

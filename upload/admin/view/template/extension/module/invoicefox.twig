@@ -286,21 +286,12 @@
               <span class="error">{{ error_tax_location }}</span>
               {% endif %}
 	    </div>
-          </div>
-
-	  <div class="form-group">
-            <label class="col-sm-2 control-label" for="invoicefox_tax_register">{{ entry_tax_register }}</label>
-            <div class="col-sm-10"><input id="invoicefox_tax_register" type="text" name="invoicefox_tax_register" value="{{ invoicefox_tax_register }}"  class="form-control"/>
-	      {% if error_tax_register %}
-              <span class="error">{{ error_tax_register }}</span>
-              {% endif %}
-	    </div>
-          </div>
+     </div>
 
 	   <div class="form-group">
             <label class="col-sm-2 control-label" for="invoicefox_fiscalize">{{ entry_fiscalize }}</label>
             <div class="col-sm-10"><select id="invoicefox_fiscalize" name="invoicefox_fiscalize"  class="form-control">
-                  {% if invoicefox_fiscalize=='1' %}
+          {% if invoicefox_fiscalize=='1' %}
 			<option selected="selected" value="1">true</option>
 		  {% else %}
 			<option value="1">true</option>
