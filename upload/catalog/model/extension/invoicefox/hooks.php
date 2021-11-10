@@ -252,10 +252,12 @@ class ModelExtensionInvoiceFoxHooks extends Model {
 			   'qty' => $product['quantity'],
 			   'mu' => '',
 			   'price' => round($product['price'], $this->CONF['round_calculated_netprice_to']),
-			   'vat' => round($product['tax'] / $product['price'] * 100, $this->CONF['round_calculated_taxrate_to']),
+//			   'vat' => round($product['tax'] / $product['price'] * 100, $this->CONF['round_calculated_taxrate_to']),
+		  	   'vat' => calculatePreciseSloVAT($product['price'], $product['tax']),
 			   'discount' => 0
 			   );
-	  $producttax = round($product['tax'] / $product['price'] * 100, $this->CONF['round_calculated_taxrate_to']);
+//	  $producttax = round($product['tax'] / $product['price'] * 100, $this->CONF['round_calculated_taxrate_to']);
+	  $producttax =  calculatePreciseSloVAT($product['price'], $product['tax']);
 	}
 	
 	$shipping = $this->findShipping($this->model_extension_invoicefox_order->getOrderTotals($order_id));
@@ -431,8 +433,17 @@ class ModelExtensionInvoiceFoxHooks extends Model {
     
   }
 
-  
+  function calculatePreciseSloVAT($netPrice, $vatValue) {
+	// because of new EU rules all EU VAT levels are valid here
+	$vatLevels = array(0, 5, 9.5, 17, 18, 19, 20, 21, 22, 23, 24, 25, 27, 28);
+	$vat1 = round( $vatValue / $netPrice * 100, 1);
+	$vat = -1;
+	foreach ($vatLevels as $vatLevel) {
+		if (abs($vat1 - $vatLevel) < 0.5) {
+			$vat = $vatLevel;
+		}
+	}
 
-  
-    
+	return $vat;
+  } 
 }
