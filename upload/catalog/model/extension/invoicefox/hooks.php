@@ -125,9 +125,9 @@ class ModelExtensionInvoiceFoxHooks extends Model {
       // $this->load->model('invoicefox/order');
       //$this->load->model('invoicefox/order_status');
       //$this->load->model('sale/order');
-      
-	  //$order = $this->model_invoicefox_order->getOrder($order_id);
-      $invoice_no = $order_id; // ['invoice_prefix'] . $order['order_id'] ;
+      //$order = $this->model_invoicefox_order->getOrder($order_id);
+
+	  $invoice_no = $order_id; // ['invoice_prefix'] . $order['order_id'] ;
       
 	  $header['id']=0;
 	  $header['id_invoice_sent_ext']=$invoice_no;
@@ -141,7 +141,9 @@ class ModelExtensionInvoiceFoxHooks extends Model {
 	  $r = $api->finalizeInvoice($header); 
 	  $result=array();
 	  $result['status']='fail';
-      opencart_invfox__trace($r);
+      // opencart_invfox__trace($r);
+	$this->load->model('extension/invoicefox/order');
+
 	  if(is_array($r)){
 		if(isset($r[0]['err'])){
 			$result['error']=$r[0]['err'];
@@ -152,10 +154,8 @@ class ModelExtensionInvoiceFoxHooks extends Model {
             if (isset($result['eor'])) {
                 $result['eor']=$r[0]['eor'];
 			}
-			$this->load->model('extension/invoicefox/order');
 			$this->model_extension_invoicefox_order->updateInvoiceFinalized($order_id); 
-			$this->model_extension_invoicefox_order->updateInvoiceDocNum($order_id,$r[0]['docnum']); 
-			
+			$this->model_extension_invoicefox_order->updateInvoiceDocNum($order_id,$r[0]['docnum']); 		
 		}
 		else{
 			$result['error']='Error 1 occured';
